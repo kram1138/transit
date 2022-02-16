@@ -69,7 +69,7 @@
 
     i {
         position: absolute;
-        top: 2rem;
+        top: 2.5rem;
         right: 0.5rem;
         pointer-events: none;
     }

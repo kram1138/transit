@@ -10,6 +10,7 @@ body {
     margin-top: 2rem;
     margin-bottom: 2rem;
     font-family: "Asap Condensed", sans-serif;
+    font-size: 1.5rem;
 }
 
 body > * {
@@ -27,6 +28,7 @@ button {
     justify-content: center;
     padding-left: 1rem;
     padding-right: 1rem;
+    font-size: 1.5rem;
 }
 
 button:not(:first-child) {
@@ -54,8 +56,8 @@ input {
     height: 2rem;
     border-radius: 1rem;
     padding: 1rem;
+    font-size: 1.5rem;
     box-sizing: border-box;
-    font-size: 1rem;
     border: 1px solid var(--border);
 }
 
