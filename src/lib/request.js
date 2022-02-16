@@ -10,17 +10,9 @@ export function getBadgeForRoute(route) {
     };
 }
 
-export async function requestStopSearch(search) {
-    const path = `/v3/stops:${search}.json`;
-    const response = await fetch(
-        `${base}${path}?api-key=${apiKey}&usage=long`
-    )
-    if (!response.ok) {
-        throw new Error("Request failed");
-    }
-    const stops = (await response.json()).stops;
-    const withBadges = await Promise.all(
-        stops.map(({ name, key }) => {
+function parseStops(stops) {
+    return Promise.all(
+        stops.map(({ name, key, distances }) => {
             const path = `/v3/routes.json?stop=${key}&usage=long`;
             return fetch(
                 `${base}${path}&api-key=${apiKey}`
@@ -32,11 +24,37 @@ export async function requestStopSearch(search) {
             }).then(({routes}) => ({
                 key,
                 name,
-                badges: routes.sort((a, b) => a.key - b.key).map(getBadgeForRoute)
+                badges: routes.sort((a, b) => a.key - b.key).map(getBadgeForRoute),
+                distance: distances?.walking
             }));
         })
     );
-    return withBadges;
+}
+
+export async function requestStopSearch(search) {
+    const url = new URL(`${base}/v3/stops:${search}.json`);
+    url.searchParams.set("api-key", apiKey);
+    url.searchParams.set("usage", "long");
+    const response = await fetch(url.toString())
+    if (!response.ok) {
+        throw new Error("Request failed");
+    }
+    return parseStops((await response.json()).stops);
+}
+
+export async function requestStopByLocation({latitude, longitude}) {
+    const url = new URL(`${base}/v3/stops.json`);
+    url.searchParams.set("api-key", apiKey);
+    url.searchParams.set("usage", "long");
+    url.searchParams.set("lat", latitude);
+    url.searchParams.set("lon", longitude);
+    url.searchParams.set("distance", 250);
+    url.searchParams.set("walking", true);
+    const response = await fetch(url.toString())
+    if (!response.ok) {
+        throw new Error("Request failed");
+    }
+    return parseStops((await response.json()).stops);
 }
 
 export function requestSchedule(stop, fetch, time) {
