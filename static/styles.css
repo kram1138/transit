@@ -1,0 +1,64 @@
+:root {
+    --border: rgb(212, 212, 235);
+    --hover: rgb(240, 240, 243);
+}
+
+body {
+    display: grid;
+    grid-template-columns: 1fr min(45rem, 95%) 1fr;
+    margin: 0;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    font-family: "Asap Condensed", sans-serif;
+}
+
+body > * {
+    grid-column: 2;
+}
+
+button {
+    background-color: transparent;
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    cursor: pointer;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+button:not(:first-child) {
+    margin-left: 1rem;
+}
+
+.icon-button {
+    border: none;
+    border-radius: 50%;
+    width: 2rem;
+    padding: 0;
+}
+
+button:hover {
+    background-color: var(--hover);
+}
+
+label {
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+
+input {
+    width: 100%;
+    height: 2rem;
+    border-radius: 1rem;
+    padding: 1rem;
+    box-sizing: border-box;
+    font-size: 1rem;
+    border: 1px solid var(--border);
+}
+
+input:focus-visible {
+    outline: 2px solid var(--border);
+}
