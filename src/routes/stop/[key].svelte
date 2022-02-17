@@ -91,7 +91,14 @@
     }
 </script>
 
-<div class="stop">
+<header>
+    <nav>
+        <a class="button" href="/">Nearby stops</a>
+        <a class="button" href="/search">Search</a>
+    </nav>
+</header>
+
+<main class="stop">
     {#await stop}
         Loading
     {:then stop}
@@ -128,7 +135,7 @@
     {:catch}
         No route found
     {/await}
-</div>
+</main>
 
 <style>
     .stop {

@@ -42,13 +42,13 @@ export async function requestStopSearch(search) {
     return parseStops((await response.json()).stops);
 }
 
-export async function requestStopByLocation({latitude, longitude}) {
+export async function requestStopByLocation({latitude, longitude}, distance) {
     const url = new URL(`${base}/v3/stops.json`);
     url.searchParams.set("api-key", apiKey);
     url.searchParams.set("usage", "long");
     url.searchParams.set("lat", latitude);
     url.searchParams.set("lon", longitude);
-    url.searchParams.set("distance", 250);
+    url.searchParams.set("distance", Math.min(distance, 1000));
     url.searchParams.set("walking", true);
     const response = await fetch(url.toString())
     if (!response.ok) {

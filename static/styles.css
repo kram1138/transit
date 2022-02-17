@@ -5,24 +5,26 @@
 }
 
 body {
-    display: grid;
-    grid-template-columns: 1fr min(45rem, 95%) 1fr;
-    margin: 0;
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 1rem;
     font-family: "Asap Condensed", sans-serif;
     font-size: var(--font-size);
 }
 
 body > * {
-    grid-column: 2;
+    width: 45rem;
+    max-width: 100%;
 }
 
-button {
+button,.button {
     background-color: transparent;
     border: 1px solid var(--border);
     border-radius: 1rem;
     cursor: pointer;
+    color: black;
+    text-decoration: none;
     height: 2rem;
     display: flex;
     align-items: center;
@@ -32,7 +34,7 @@ button {
     font-size: var(--font-size);
 }
 
-button:not(:first-child) {
+button,.button:not(:first-child) {
     margin-left: 1rem;
 }
 
@@ -43,7 +45,7 @@ button:not(:first-child) {
     padding: 0;
 }
 
-button:hover {
+button,.button:hover {
     background-color: var(--hover);
 }
 
@@ -64,4 +66,9 @@ input {
 
 input:focus-visible {
     outline: 2px solid var(--border);
+}
+
+nav {
+    display: flex;
+    margin-bottom: 1rem;
 }
