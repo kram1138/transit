@@ -25,6 +25,7 @@
 <header>
     <nav>
         <a class="button" href="/search">Search</a>
+        <a class="button" href="/favorites">Favourites</a>
     </nav>
 </header>
 
