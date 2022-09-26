@@ -1,43 +1,56 @@
 <script>
-    import Badge from "./badge.svelte";
+  import Badge from "./badge.svelte";
 
-    export let buses;
+  export let buses;
 </script>
 
 <table>
-    {#each buses as { timeLabel, badge, name, late }}
-        <tr>
-            <td class="badge"><Badge {badge} /></td>
-            <td class="route-name">{name}</td>
-            <td class="time">{timeLabel}</td>
-            <td class="late">{late ? "Late" : "OK"}</td>
-        </tr>
-    {/each}
+  {#each buses as { timeLabel, badge, bike, wifi, name, late }}
+    <tr>
+      <td class="badge"><Badge {badge} /></td>
+      <td>
+        <div class="route-name">
+          <span>{name}</span>
+          {#if bike}<i class="material-icons bus-option">directions_bike</i
+            >{/if}
+          {#if wifi}<i class="material-icons bus-option">wifi</i>{/if}
+        </div>
+      </td>
+      <td class="time">{timeLabel}</td>
+      <td class="late">{late ? "Late" : "OK"}</td>
+    </tr>
+  {/each}
 </table>
 
 <style>
-    table {
-        border-spacing: 0;
-    }
+  table {
+    border-spacing: 0;
+  }
 
-    tr {
-        height: 3.2rem;
-    }
-    
-    td {
-        border-bottom: 1px solid var(--border);
-    }
+  tr {
+    height: 3.2rem;
+  }
 
-    .badge {
-        width: 1rem;
-    }
+  td {
+    border-bottom: 1px solid var(--border);
+  }
 
-    .route-name {
-        padding-left: 0.5rem;
-        padding-right: 0.5rem;
-    }
+  .badge {
+    width: 1rem;
+  }
 
-    .time {
-        white-space: nowrap;
-    }
+  .bus-option {
+    padding-left: 0.5rem;
+  }
+
+  .route-name {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    align-items: center;
+    display: flex;
+  }
+
+  .time {
+    white-space: nowrap;
+  }
 </style>

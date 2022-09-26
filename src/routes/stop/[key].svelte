@@ -17,6 +17,8 @@
          * time: Date,
          * timeLabel: string,
          * badge: unknown,
+         * bike: boolean,
+         * wifi: boolean,
          * late: boolean,
          * }[] }*/
         const buses = routeSchedules.flatMap((route) => {
@@ -24,6 +26,8 @@
             return route["scheduled-stops"].map((stop) => {
                 const time = new Date(stop.times.departure.estimated);
                 const delta = (time - now) / 1000 / 60;
+                const bike = stop.bus?.["bike-rack"] === "true";
+                const wifi = stop.bus?.["wifi"] === "true";
                 const timeLabel =
                     delta < 15
                         ? formatRelative.format(Math.ceil(delta), "minute")
@@ -38,6 +42,8 @@
                     timeLabel,
                     name: stop.variant.name,
                     badge,
+                    bike,
+                    wifi,
                     late,
                 };
             });
