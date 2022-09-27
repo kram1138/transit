@@ -11,13 +11,13 @@
       <td>
         <div class="route-name">
           <span>{name}</span>
-          {#if bike}<i class="material-icons bus-option">directions_bike</i
-            >{/if}
+          {#if bike}
+            <i class="material-icons bus-option">directions_bike</i>
+          {/if}
           {#if wifi}<i class="material-icons bus-option">wifi</i>{/if}
         </div>
       </td>
-      <td class="time">{timeLabel}</td>
-      <td class="late">{late ? "Late" : "OK"}</td>
+      <td><span class="time" class:late>{timeLabel}</span></td>
     </tr>
   {/each}
 </table>
@@ -52,5 +52,11 @@
 
   .time {
     white-space: nowrap;
+    border-radius: 4px;
+    padding: 0.2rem;
+  }
+
+  .late {
+    border: 2px solid var(--late);
   }
 </style>
