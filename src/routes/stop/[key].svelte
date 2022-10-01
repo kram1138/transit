@@ -40,7 +40,8 @@
                 return {
                     time,
                     timeLabel,
-                    name: stop.variant.name,
+                    route: route.route.name ?? route.route.key,
+                    destination: stop.variant.name,
                     badge,
                     bike,
                     wifi,
